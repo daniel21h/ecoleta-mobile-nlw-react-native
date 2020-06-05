@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Ubuntu_700Bold',
     marginTop: 24,
+    // paddingHorizontal: 32,
   },
 
   description: {
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 4,
     fontFamily: 'Roboto_400Regular',
+    // paddingHorizontal: 32,
   },
 
   mapContainer: {
