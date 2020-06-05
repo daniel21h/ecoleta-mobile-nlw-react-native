@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
 import { View, TouchableOpacity, Text, ScrollView, Image, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 
 import MapView, { Marker } from 'react-native-maps';
@@ -25,6 +25,11 @@ interface Point {
   longitude: number;
 }
 
+interface Params {
+  uf: string;
+  city: string;
+}
+
 const Points = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [points, setPoints] = useState<Point[]>([]);
@@ -33,6 +38,9 @@ const Points = () => {
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
   const navigation = useNavigation();
+  const route = useRoute();
+
+  const routeParams = route.params as Params;
 
   function handleNavigateToDetail(id: number) {
     navigation.navigate('Detail', { point_id: id })
@@ -73,14 +81,14 @@ const Points = () => {
   useEffect(() => {
     api.get('points', {
       params: {
-        city: 'Embu-Guaçu',
-        uf: 'SP',
-        items: [6]
+        city: routeParams.city,
+        uf: routeParams.uf,
+        items: selectedItems
       }
     }).then(response => {
       setPoints(response.data);
     })
-  }, []);
+  }, [selectedItems]);
 
   function handleSelectItem(id: number) {
     const alreadySelected = selectedItems.findIndex(item => item === id);
