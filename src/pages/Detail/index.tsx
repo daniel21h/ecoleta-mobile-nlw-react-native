@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Feather as Icon, FontAwesome } from '@expo/vector-icons';
 import { View, TouchableOpacity, Image, Text, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -9,6 +9,10 @@ import styles from './styles';
 
 const Detail = () => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    
+  }, [])
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
